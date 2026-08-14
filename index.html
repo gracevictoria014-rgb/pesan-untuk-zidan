@@ -1377,4 +1377,289 @@ function spawnButterfly() {
 
     const y =
         10 +
-        Math.random()
+        Math.random() *
+        Math.max(
+            0,
+            maxY - 10
+        );
+
+
+    butterfly.style.left =
+        x + "px";
+
+
+    butterfly.style.top =
+        y + "px";
+
+
+    /*
+       Kecepatan gerakan
+       sedikit berbeda
+    */
+
+    butterfly.style.animationDuration =
+        (
+            2.5 +
+            Math.random() * 1.5
+        ) + "s";
+
+
+    /*
+       Klik
+    */
+
+    butterfly.addEventListener(
+        "click",
+        catchButterfly
+    );
+
+
+    /*
+       Touch untuk HP
+    */
+
+    butterfly.addEventListener(
+        "touchstart",
+        function(e) {
+
+            e.preventDefault();
+
+            catchButterfly.call(
+                butterfly,
+                e
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    butterflyArea.appendChild(
+        butterfly
+    );
+
+}
+
+
+/* =========================
+   TANGKAP KUPU-KUPU
+========================= */
+
+function catchButterfly(e) {
+
+    if (!gameRunning) {
+        return;
+    }
+
+
+    const butterfly = this;
+
+
+    if (
+        butterfly.classList.contains(
+            "caught"
+        )
+    ) {
+        return;
+    }
+
+
+    butterfly.classList.add(
+        "caught"
+    );
+
+
+    score++;
+
+
+    scoreElement.innerText =
+        score;
+
+
+    setTimeout(
+        () => {
+            butterfly.remove();
+        },
+        400
+    );
+
+
+    if (score >= 8) {
+        finishGame();
+    }
+
+}
+
+
+/* =========================
+   SELESAI GAME
+========================= */
+
+function finishGame() {
+
+    gameRunning = false;
+
+
+    if (spawnTimer) {
+
+        clearInterval(
+            spawnTimer
+        );
+
+    }
+
+
+    spawnTimer = null;
+
+
+    setTimeout(
+        () => {
+
+            butterflyArea
+                .querySelectorAll(
+                    ".butterfly"
+                )
+                .forEach(
+                    butterfly => {
+                        butterfly.remove();
+                    }
+                );
+
+
+            hidePages();
+
+
+            document
+                .getElementById(
+                    "successPage"
+                )
+                .classList.remove(
+                    "hidden"
+                );
+
+        },
+        700
+    );
+
+}
+
+
+/* =========================
+   TAMPILKAN AMPLOP
+========================= */
+
+function showEnvelope() {
+
+    hidePages();
+
+
+    document
+        .getElementById(
+            "envelopePage"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+}
+
+
+/* =========================
+   BUKA AMPLOP
+========================= */
+
+function openEnvelope() {
+
+    const envelope =
+        document.getElementById(
+            "envelope"
+        );
+
+
+    const envelopeText =
+        document.getElementById(
+            "envelopeText"
+        );
+
+
+    const sound =
+        document.getElementById(
+            "sound"
+        );
+
+
+    /*
+       Kalau sudah terbuka,
+       jangan buka lagi
+    */
+
+    if (
+        envelope.classList.contains(
+            "open"
+        )
+    ) {
+        return;
+    }
+
+
+    /*
+       Buka amplop
+    */
+
+    envelope.classList.add(
+        "open"
+    );
+
+
+    envelopeText.innerText =
+        "Pesannya sudah dibuka 💌";
+
+
+    /*
+       Mulai musik setelah
+       pengguna menyentuh amplop
+    */
+
+    sound.volume = 0.5;
+
+
+    sound.play()
+        .catch(
+            () => {
+                console.log(
+                    "Musik belum bisa diputar otomatis."
+                );
+            }
+        );
+
+
+    /*
+       Tunggu animasi amplop
+    */
+
+    setTimeout(
+        () => {
+
+            hidePages();
+
+
+            document
+                .getElementById(
+                    "messagePage"
+                )
+                .classList.remove(
+                    "hidden"
+                );
+
+        },
+        1200
+    );
+
+}
+
+</script>
+
+</body>
+</html>
