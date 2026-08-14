@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Zidan</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: "Segoe UI", sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #dff7ff,
+        #cceeff,
+        #e9faff
+    );
+
+    color: #4f7182;
+}
+
+/* =========================
+   RINTIK BIRU
+========================= */
+
+.rain {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.drop {
+    position: absolute;
+    top: -30px;
+    width: 2px;
+    height: 20px;
+    background: rgba(80, 180, 220, 0.35);
+    border-radius: 20px;
+    animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   GELEMBUNG + LUMBA-LUMBA
+========================= */
+
+.bg-hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-heart {
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+    animation: floatSea linear forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes floatSea {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(.7);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .65;
+    }
+
+    35% {
+        transform:
+            translateY(-30vh)
+            translateX(15px)
+            scale(.9);
+
+        opacity: .7;
+    }
+
+    60% {
+        transform:
+            translateY(-60vh)
+            translateX(-15px)
+            scale(1);
+
+        opacity: .65;
+    }
+
+    80% {
+        transform:
+            translateY(-85vh)
+            translateX(12px)
+            scale(1.1);
+
+        opacity: .5;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(-10px)
+            scale(1.2);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px 0;
+}
+
+.page {
+    width: calc(100% - 30px);
+    max-width: 430px;
+
+    text-align: center;
+
+    animation: pageIn .6s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   TEXT
+========================= */
+
+h1 {
+    margin-bottom: 10px;
+    color: #4cafd1;
+    font-size: 30px;
+}
+
+h2 {
+    color: #4cafd1;
+    font-size: 25px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    margin-top: 20px;
+
+    padding: 14px 28px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #63c8ec,
+        #77aeea
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px
+        rgba(60,160,210,.25);
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn:active {
+    transform: scale(.94);
+}
+
+/* =========================
+   GAME KUPU-KUPU
+========================= */
+
+.game-info {
+    margin-bottom: 8px;
+}
+
+.score {
+    font-size: 18px;
+    font-weight: bold;
+    color: #419dbf;
+}
+
+.butterfly-area {
+
+    position: relative;
+
+    width: 100%;
+    height: 430px;
+
+    margin-top: 15px;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.45),
+            rgba(160,220,245,.35)
+        );
+
+    border: 2px solid
+        rgba(255,255,255,.75);
+
+    box-shadow:
+        0 12px 30px
+        rgba(70,150,190,.18);
+}
+
+
+/* =========================
+   KUPU-KUPU
+========================= */
+
+.butterfly {
+
+    position: absolute;
+
+    font-size: 48px;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    filter:
+        drop-shadow(
+            0 4px 5px
+            rgba(50,130,170,.18)
+        );
+
+    animation:
+        butterflyFloat
+        2.8s
+        ease-in-out
+        infinite alternate;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+}
+
+.butterfly:active {
+
+    transform:
+        scale(.75);
+
+}
+
+@keyframes butterflyFloat {
+
+    0% {
+        transform:
+            translate(0, 0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translate(12px, -15px)
+            rotate(5deg);
+    }
+
+    100% {
+        transform:
+            translate(-10px, 10px)
+            rotate(-4deg);
+    }
+}
+
+
+/* Efek ketika tertangkap */
+
+.butterfly.caught {
+
+    pointer-events: none;
+
+    animation:
+        butterflyCaught
+        .45s
+        ease
+        forwards;
+}
+
+@keyframes butterflyCaught {
+
+    0% {
+        transform:
+            scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            scale(1.5)
+            rotate(20deg);
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            scale(.1)
+            rotate(60deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   INSTRUKSI
+========================= */
+
+.instruction {
+
+    font-size: 14px;
+
+    color: #6795a7;
+
+    margin-top: 10px;
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-heart {
+
+    font-size: 80px;
+
+    animation:
+        heartBeat
+        1s
+        infinite;
+}
+
+@keyframes heartBeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope {
+
+    position: relative;
+
+    width: 240px;
+    height: 160px;
+
+    margin: 30px auto;
+
+    cursor: pointer;
+}
+
+.env-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #8ed8f2;
+
+    border-radius: 8px;
+}
+
+.env-letter {
+
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 10px;
+
+    height: 110px;
+
+    background: white;
+
+    border-radius: 5px;
+
+    transition: .8s;
+
+    z-index: 2;
+}
+
+.env-front {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #6cc6e9;
+
+    clip-path:
+        polygon(
+            0 45%,
+            50% 100%,
+            100% 45%,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+}
+
+.env-flap {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 75%;
+
+    background: #a9e5f7;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 70%
+        );
+
+    transform-origin: top;
+
+    transition: .8s;
+
+    z-index: 5;
+}
+
+.envelope.open .env-flap {
+
+    transform:
+        rotateX(180deg);
+}
+
+.envelope.open .env-letter {
+
+    transform:
+        translateY(-80px);
+
+    z-index: 6;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-card {
+
+    background:
+        rgba(255,255,255,.60);
+
+    padding: 25px 20px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(70,140,170,.18);
+
+    border: 1px solid
+        rgba(255,255,255,.8);
+}
+
+.message-card h2 {
+
+    color: #4cafd1;
+}
+
+.message {
+
+    text-align: left;
+
+    line-height: 1.8;
+
+    white-space: pre-line;
+}
+
+.signature {
+
+    margin-top: 20px;
+
+    text-align: right;
+
+    color: #4cafd1;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px) {
+
+    .butterfly-area {
+
+        height: 430px;
+
+    }
+
+    .butterfly {
+
+        font-size: 45px;
+
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<audio
+    id="sound"
+    preload="auto"
+    loop>
+
+    <source
+        src="lagu_40_detik.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- RINTIK -->
+
+<div
+    class="rain"
+    id="rain">
+</div>
+
+
+<!-- GELEMBUNG + LUMBA-LUMBA -->
+
+<div
+    class="bg-hearts"
+    id="bgHearts">
+</div>
+
+
+<div class="container">
+
+
+    <!-- =====================
+         HALAMAN AWAL
+    ====================== -->
+
+    <div
+        class="page"
+        id="startPage">
+
+        <div style="font-size:75px;">
+            💌
+        </div>
+
+        <h1>
+            Hallo Zidan!
+        </h1>
+
+        <p>
+            Ada sesuatu yang sebenarnya<br>
+            mau aku bilang...
+        </p>
+
+        <button
+            class="btn"
+            onclick="startGame()">
+
+            💌 Buka Pesan
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================
+         GAME KUPU-KUPU
+    ====================== -->
+
+    <div
+        class="page hidden"
+        id="gamePage">
+
+        <h2>
+            Sebelum baca pesannya...
+        </h2>
+
+        <p class="game-info">
+            Tangkap dulu
+            <b>8 kupu-kupu!</b> 🦋
+        </p>
+
+        <div class="score">
+
+            🦋 Tertangkap:
+            <span id="score">
+                0
+            </span>/8
+
+        </div>
+
+
+        <div
+            class="butterfly-area"
+            id="butterflyArea">
+        </div>
+
+
+        <div class="instruction">
+
+            👆 Tap kupu-kupunya
+            untuk menangkapnya 🦋
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         BERHASIL
+    ====================== -->
+
+    <div
+        class="page hidden"
+        id="successPage">
+
+        <div class="success-heart">
+            🦋
+        </div>
+
+        <h2>
+            Yeay! Berhasil! 🎉
+        </h2>
+
+        <p>
+            Kamu berhasil menangkap<br>
+            8 kupu-kupu! 🥹🦋
+        </p>
+
+        <p>
+            Sekarang kamu boleh<br>
+            membuka pesannya 💌
+        </p>
+
+        <button
+            class="btn"
+            onclick="showEnvelope()">
+
+            💌 Buka Pesan
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================
+         AMPLOP
+    ====================== -->
+
+    <div
+        class="page hidden"
+        id="envelopePage">
+
+        <h2>
+            💌 Ada pesan untuk kamu...
+        </h2>
+
+        <p>
+            Kencangkan volume dulu ya... 🥺
+        </p>
+
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openEnvelope()">
+
+            <div class="env-back">
+            </div>
+
+            <div class="env-letter">
+            </div>
+
+            <div class="env-flap">
+            </div>
+
+            <div class="env-front">
+            </div>
+
+        </div>
+
+
+        <p id="envelopeText">
+
+            Klik amplop untuk membuka
+
+        </p>
+
+    </div>
+
+
+    <!-- =====================
+         PESAN
+    ====================== -->
+
+    <div
+        class="page hidden"
+        id="messagePage">
+
+        <div class="message-card">
+
+            <div style="font-size:55px;">
+                💌
+            </div>
+
+            <h2>
+                Untuk Zidan
+            </h2>
+
+
+            <div class="message">
+
+Hallo Zidan, jujur ya aku nulis surat ini terakhir lho dari temen yang lainnya. Soalnya mungkin banyak yang mau aku bilang ke kamu. Bukan ungkapan puitis atau hal yang terlalu di lebih lebihkan tapi ini isi hati aku aja.
+
+Aku mau ngucapin seribu makasih buat kamu, bukan dari awal kita kuliah tapi dari awal kita akrab di sekolah. Udah lama banget kan kita temenan, udah lama juga kamu selalu bantu aku kalo ada kendala perihal di kuliahan. Kamu selalu ngasih info, kamu selalu nemenin aku jajan, kamu juga suka ngasih aku jawaban tuton waktu aku di ambang kemageran. Banyak hal yang perlu aku bilang terima kasih dan aku seneng banget punya temen kaya kamu.
+
+Mungkin terkesan sepele tapi aku ada di titik ini itu salah satunya karena kamu, kamu yang ngasih info kalo ada universitas terbuka, kamu juga yang bilang uang kuliahnya terjangkau hingga aku milih ini. Sampai akhirnya aku bisa lulus dapet gelar sarjana.
+
+Dulu itu aku ga nyangka bisa temenan lama banget sama kamu, ga nyangka juga bisa akrab sampai hari ini dan emang banyak hal yang ga aku sangka. Momen momen perkuliahan aku mungkin emang banyak sama kamunya dari awal semester kecuali waktu aku magang itu di jeda dulu 1 semester kan.
+
+Aku juga ga lupa buat minta maaf sama kamu. Kalo aku misal pernah bikin kamu sakit hati, ntah itu dari ucapan aku atau dari perbuatan aku. Aku mintaa maaf apapun itu yaa. Soalnya aku takut candaan aku ada yang bikin kamu tersinggung. 
+
+Kalo di bahas momen momen yang paling berkesan mungkin banyak ya dari ngobrolin orang orang dari A - Z atau sekedar ketawa bareng yang mungkin suatu hari saat cuman bisa di kenang aja. Kita juga bareng bukan pas pembelajaran kuliah aja tapi waktu ujian pun kita suka bareng bahkan jajan jugaa ngeborong kaya waktu itu.
+
+Ngomongin momen momen perkuliahan emang gabakalan ada abisnya, itu makannya aku mau bilang terimakasih untuk kesekian kalinya karena ada kamu momen itu bisa ada. Dan aku menikmati setiap momen itu.
+
+Semoga kedepannya Zidan selalu bahagia yaa, kalo ada apa apa kamu jangan sungkan buat cerita ke gpt, aku gabakalan minta cerita ke aku si soalnya aku aja masih di bantu gpt kalo punya problem hehe. Tapi bisa si ngomong ke aku kalo aku free ketang(
+
+Udah segitu aja aku bingung bukan karena aku kehabisan kata kata tapi justru kebanyakan hal yang mau aku sampaikan sampai pusing bahas ini itu.
+
+Semoga apapun yang lagi Zidan berjuangkan berjalan baik yaa semangat Zidan, aku doain yang baik baik buat kamu.
+
+See u zidann babayyyy🤪
+
+            </div>
+
+            <div class="signature">
+
+                Dari Reni Intan Nuraini
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   RINTIK
+========================= */
+
+const rain =
+    document.getElementById(
+        "rain"
+    );
+
+
+for(let i = 0; i < 55; i++){
+
+    const drop =
+        document.createElement(
+            "div"
+        );
+
+    drop.className =
+        "drop";
+
+    drop.style.left =
+        Math.random() * 100 + "%";
+
+    drop.style.animationDuration =
+        (2 + Math.random() * 3)
+        + "s";
+
+    drop.style.animationDelay =
+        Math.random() * 5
+        + "s";
+
+    rain.appendChild(drop);
+}
+
+
+/* =========================
+   GELEMBUNG + LUMBA-LUMBA
+========================= */
+
+const bgHearts =
+    document.getElementById(
+        "bgHearts"
+    );
+
+
+function createBackgroundHeart(){
+
+    const seaObject =
+        document.createElement(
+            "div"
+        );
+
+    seaObject.className =
+        "bg-heart";
+
+
+    if(Math.random() < 0.75){
+
+        seaObject.innerText =
+            "🫧";
+
+        seaObject.style.fontSize =
+            (14 + Math.random() * 22)
+            + "px";
+
+    } else {
+
+        seaObject.innerText =
+            "🐬";
+
+        seaObject.style.fontSize =
+            (25 + Math.random() * 15)
+            + "px";
+
+    }
+
+
+    seaObject.style.left =
+        Math.random() * 100
+        + "%";
+
+
+    seaObject.style.animationDuration =
+        (8 + Math.random() * 7)
+        + "s";
+
+
+    seaObject.style.animationDelay =
+        Math.random() * 1.5
+        + "s";
+
+
+    bgHearts.appendChild(
+        seaObject
+    );
+
+
+    setTimeout(() => {
+
+        seaObject.remove();
+
+    }, 16000);
+}
+
+
+setInterval(
+    createBackgroundHeart,
+    600
+);
+
+
+/* =========================
+   HALAMAN
+========================= */
+
+function hidePages(){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.add(
+                "hidden"
+            );
+
+        });
+}
+
+
+/* =========================
+   GAME KUPU-KUPU
+========================= */
+
+const butterflyArea =
+    document.getElementById(
+        "butterflyArea"
+    );
+
+const scoreElement =
+    document.getElementById(
+        "score"
+    );
+
+
+let score = 0;
+
+let gameRunning = false;
+
+let spawnTimer = null;
+
+
+/* =========================
+   MULAI GAME
+========================= */
+
+function startGame(){
+
+    hidePages();
+
+    document
+        .getElementById(
+            "gamePage"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+    score = 0;
+
+    scoreElement.innerText =
+        score;
+
+
+    gameRunning = true;
+
+
+    butterflyArea.innerHTML =
+        "";
+
+
+    /*
+       Munculkan kupu-kupu
+       pertama
+    */
+
+    spawnButterfly();
+
+
+    /*
+       Kupu-kupu berikutnya
+       muncul pelan-pelan
+    */
+
+    spawnTimer =
+        setInterval(
+            () => {
+
+                if(
+                    gameRunning &&
+                    score < 8
+                ){
+
+                    spawnButterfly();
+
+                }
+
+            },
+            1300
+        );
+
+}
+
+
+/* =========================
+   BUAT KUPU-KUPU
+========================= */
+
+function spawnButterfly(){
+
+    if(!gameRunning){
+        return;
+    }
+
+
+    /*
+       Jangan terlalu banyak
+       kupu-kupu di layar
+    */
+
+    const existing =
+        butterflyArea
+        .querySelectorAll(
+            ".butterfly"
+        );
+
+
+    if(existing.length >= 3){
+        return;
+    }
+
+
+    const butterfly =
+        document.createElement(
+            "div"
+        );
+
+
+    butterfly.className =
+        "butterfly";
+
+
+    butterfly.innerText =
+        "🦋";
+
+
+    /*
+       Posisi acak
+    */
+
+    const maxX =
+        butterflyArea.clientWidth
+        - 60;
+
+    const maxY =
+        butterflyArea.clientHeight
+        - 70;
+
+
+    const x =
+        10 +
+        Math.random()
+        * Math.max(
+            0,
+            maxX - 10
+        );
+
+
+    const y =
+        10 +
+        Math.random()
+        * Math.max(
+            0,
+            maxY - 10
+        );
+
+
+    butterfly.style.left =
+        x + "px";
+
+
+    butterfly.style.top =
+        y + "px";
+
+
+    /*
+       Kecepatan animasi
+       sedikit berbeda
+    */
+
+    butterfly.style.animationDuration =
+        (2.5 + Math.random() * 1.5)
+        + "s";
+
+
+    /*
+       Saat disentuh
+    */
+
+    butterfly.addEventListener(
+        "click",
+        catchButterfly
+    );
+
+
+    butterfly.addEventListener(
+        "touchstart",
+        function(e){
+
+            e.preventDefault();
+
+            catchButterfly.call(
+                butterfly,
+                e
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    butterflyArea.appendChild(
+        butterfly
+    );
+
+}
+
+
+/* =========================
+   TANGKAP KUPU-KUPU
+========================= */
+
+function catchButterfly(e){
+
+    if(!gameRunning){
+        return;
+    }
+
+
+    const butterfly =
+        this;
+
+
+    if(
+        butterfly.classList.contains(
+            "caught"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    butterfly.classList.add(
+        "caught"
+    );
+
+
+    score++;
+
+
+    scoreElement.innerText =
+        score;
+
+
+    setTimeout(() => {
+
+        butterfly.remove();
+
+    }, 400);
+
+
+    /*
+       Kalau sudah 8
+    */
+
+    if(score >= 8){
+
+        finishGame();
+
+    }
+
+}
+
+
+/* =========================
+   SELESAI GAME
+========================= */
+
+function finishGame(){
+
+    gameRunning = false;
+
+
+    clearInterval(
+        spawnTimer
+    );
+
+
+    spawnTimer = null;
+
+
+    /*
+       Hapus kupu-kupu
+    */
+
+    setTimeout(() => {
+
+        butterflyArea
+            .querySelectorAll(
+                ".butterfly"
+            )
+            .forEach(
+                butterfly => {
+
+                    butterfly.remove();
+
+                }
+            );
+
+
+        hidePages();
+
+
+        document
+            .getElementById(
+                "successPage"
+            )
+            .classList.remove(
+                "hidden"
+            );
+
+    }, 700);
+
+}
+
+
+/* =========================
+   TAMPIL AMPLOP
+========================= */
+
+function showEnvelope(){
+
+    hidePages();
+
+    document
+        .getElementById(
+            "envelopePage"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+}
+
+
+/* =========================
+   BUKA AMPLOP
+======================
