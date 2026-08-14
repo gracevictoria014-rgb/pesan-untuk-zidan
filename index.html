@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Untuk Zidan</title>
 
 <style>
+
+/* =========================
+   DASAR
+========================= */
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -20,6 +28,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
+
     font-family: "Segoe UI", sans-serif;
 
     background: linear-gradient(
@@ -32,6 +41,7 @@ body {
     color: #4f7182;
 }
 
+
 /* =========================
    RINTIK BIRU
 ========================= */
@@ -39,25 +49,43 @@ body {
 .rain {
     position: fixed;
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
+
     z-index: 0;
 }
 
 .drop {
     position: absolute;
+
     top: -30px;
+
     width: 2px;
     height: 20px;
-    background: rgba(80, 180, 220, 0.35);
+
+    background: rgba(
+        80,
+        180,
+        220,
+        0.35
+    );
+
     border-radius: 20px;
-    animation: rainFall linear infinite;
+
+    animation:
+        rainFall
+        linear
+        infinite;
 }
 
 @keyframes rainFall {
 
     from {
-        transform: translateY(-30px);
+        transform:
+            translateY(-30px);
+
         opacity: 0;
     }
 
@@ -66,10 +94,13 @@ body {
     }
 
     to {
-        transform: translateY(110vh);
+        transform:
+            translateY(110vh);
+
         opacity: 0;
     }
 }
+
 
 /* =========================
    GELEMBUNG + LUMBA-LUMBA
@@ -78,17 +109,29 @@ body {
 .bg-hearts {
     position: fixed;
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
+
     z-index: 1;
 }
 
 .bg-heart {
     position: absolute;
+
     bottom: -50px;
+
     opacity: 0;
-    animation: floatSea linear forwards;
-    will-change: transform, opacity;
+
+    animation:
+        floatSea
+        linear
+        forwards;
+
+    will-change:
+        transform,
+        opacity;
 }
 
 @keyframes floatSea {
@@ -143,17 +186,21 @@ body {
     }
 }
 
+
 /* =========================
    CONTAINER
 ========================= */
 
 .container {
     position: relative;
+
     z-index: 5;
+
     width: 100%;
     min-height: 100vh;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -162,11 +209,15 @@ body {
 
 .page {
     width: calc(100% - 30px);
+
     max-width: 430px;
 
     text-align: center;
 
-    animation: pageIn .6s ease;
+    animation:
+        pageIn
+        .6s
+        ease;
 }
 
 .hidden {
@@ -177,14 +228,19 @@ body {
 
     from {
         opacity: 0;
-        transform: scale(.92);
+
+        transform:
+            scale(.92);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
+
 
 /* =========================
    TEXT
@@ -192,18 +248,22 @@ body {
 
 h1 {
     margin-bottom: 10px;
+
     color: #4cafd1;
+
     font-size: 30px;
 }
 
 h2 {
     color: #4cafd1;
+
     font-size: 25px;
 }
 
 p {
     line-height: 1.7;
 }
+
 
 /* =========================
    BUTTON
@@ -215,6 +275,7 @@ p {
     padding: 14px 28px;
 
     border: none;
+
     border-radius: 30px;
 
     background: linear-gradient(
@@ -226,20 +287,31 @@ p {
     color: white;
 
     font-size: 16px;
+
     font-weight: bold;
 
     box-shadow:
         0 8px 20px
-        rgba(60,160,210,.25);
+        rgba(
+            60,
+            160,
+            210,
+            .25
+        );
 
     cursor: pointer;
 
     transition: .2s;
+
+    -webkit-tap-highlight-color:
+        transparent;
 }
 
 .btn:active {
-    transform: scale(.94);
+    transform:
+        scale(.94);
 }
+
 
 /* =========================
    GAME KUPU-KUPU
@@ -251,15 +323,17 @@ p {
 
 .score {
     font-size: 18px;
+
     font-weight: bold;
+
     color: #419dbf;
 }
 
 .butterfly-area {
-
     position: relative;
 
     width: 100%;
+
     height: 430px;
 
     margin-top: 15px;
@@ -271,16 +345,36 @@ p {
     background:
         linear-gradient(
             180deg,
-            rgba(255,255,255,.45),
-            rgba(160,220,245,.35)
+            rgba(
+                255,
+                255,
+                255,
+                .45
+            ),
+            rgba(
+                160,
+                220,
+                245,
+                .35
+            )
         );
 
     border: 2px solid
-        rgba(255,255,255,.75);
+        rgba(
+            255,
+            255,
+            255,
+            .75
+        );
 
     box-shadow:
         0 12px 30px
-        rgba(70,150,190,.18);
+        rgba(
+            70,
+            150,
+            190,
+            .18
+        );
 }
 
 
@@ -289,7 +383,6 @@ p {
 ========================= */
 
 .butterfly {
-
     position: absolute;
 
     font-size: 48px;
@@ -298,20 +391,28 @@ p {
 
     user-select: none;
 
+    -webkit-user-select: none;
+
     -webkit-tap-highlight-color:
         transparent;
 
     filter:
         drop-shadow(
             0 4px 5px
-            rgba(50,130,170,.18)
+            rgba(
+                50,
+                130,
+                170,
+                .18
+            )
         );
 
     animation:
         butterflyFloat
         2.8s
         ease-in-out
-        infinite alternate;
+        infinite
+        alternate;
 
     transition:
         transform .2s ease,
@@ -319,10 +420,8 @@ p {
 }
 
 .butterfly:active {
-
     transform:
         scale(.75);
-
 }
 
 @keyframes butterflyFloat {
@@ -347,10 +446,11 @@ p {
 }
 
 
-/* Efek ketika tertangkap */
+/* =========================
+   EFEK KUPU-KUPU TERTANGKAP
+========================= */
 
 .butterfly.caught {
-
     pointer-events: none;
 
     animation:
@@ -365,6 +465,7 @@ p {
     0% {
         transform:
             scale(1);
+
         opacity: 1;
     }
 
@@ -372,6 +473,7 @@ p {
         transform:
             scale(1.5)
             rotate(20deg);
+
         opacity: .8;
     }
 
@@ -379,6 +481,7 @@ p {
         transform:
             scale(.1)
             rotate(60deg);
+
         opacity: 0;
     }
 }
@@ -389,7 +492,6 @@ p {
 ========================= */
 
 .instruction {
-
     font-size: 14px;
 
     color: #6795a7;
@@ -403,7 +505,6 @@ p {
 ========================= */
 
 .success-heart {
-
     font-size: 80px;
 
     animation:
@@ -414,12 +515,15 @@ p {
 
 @keyframes heartBeat {
 
-    0%, 100% {
-        transform: scale(1);
+    0%,
+    100% {
+        transform:
+            scale(1);
     }
 
     50% {
-        transform: scale(1.18);
+        transform:
+            scale(1.18);
     }
 }
 
@@ -429,7 +533,6 @@ p {
 ========================= */
 
 .envelope {
-
     position: relative;
 
     width: 240px;
@@ -438,10 +541,12 @@ p {
     margin: 30px auto;
 
     cursor: pointer;
+
+    -webkit-tap-highlight-color:
+        transparent;
 }
 
 .env-back {
-
     position: absolute;
 
     inset: 0;
@@ -452,11 +557,11 @@ p {
 }
 
 .env-letter {
-
     position: absolute;
 
     left: 15px;
     right: 15px;
+
     bottom: 10px;
 
     height: 110px;
@@ -471,7 +576,6 @@ p {
 }
 
 .env-front {
-
     position: absolute;
 
     inset: 0;
@@ -491,7 +595,6 @@ p {
 }
 
 .env-flap {
-
     position: absolute;
 
     top: 0;
@@ -517,13 +620,11 @@ p {
 }
 
 .envelope.open .env-flap {
-
     transform:
         rotateX(180deg);
 }
 
 .envelope.open .env-letter {
-
     transform:
         translateY(-80px);
 
@@ -536,9 +637,13 @@ p {
 ========================= */
 
 .message-card {
-
     background:
-        rgba(255,255,255,.60);
+        rgba(
+            255,
+            255,
+            255,
+            .60
+        );
 
     padding: 25px 20px;
 
@@ -546,19 +651,27 @@ p {
 
     box-shadow:
         0 15px 40px
-        rgba(70,140,170,.18);
+        rgba(
+            70,
+            140,
+            170,
+            .18
+        );
 
     border: 1px solid
-        rgba(255,255,255,.8);
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
 }
 
 .message-card h2 {
-
     color: #4cafd1;
 }
 
 .message {
-
     text-align: left;
 
     line-height: 1.8;
@@ -567,7 +680,6 @@ p {
 }
 
 .signature {
-
     margin-top: 20px;
 
     text-align: right;
@@ -585,22 +697,37 @@ p {
 @media(max-width:480px) {
 
     .butterfly-area {
-
         height: 430px;
-
     }
 
     .butterfly {
-
         font-size: 45px;
+    }
 
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    .message-card {
+        padding:
+            22px 18px;
     }
 }
+
 </style>
 </head>
 
 
 <body>
+
+
+<!-- =========================
+     MUSIK
+========================= -->
 
 <audio
     id="sound"
@@ -614,7 +741,9 @@ p {
 </audio>
 
 
-<!-- RINTIK -->
+<!-- =========================
+     RINTIK
+========================= -->
 
 <div
     class="rain"
@@ -622,13 +751,19 @@ p {
 </div>
 
 
-<!-- GELEMBUNG + LUMBA-LUMBA -->
+<!-- =========================
+     GELEMBUNG + LUMBA-LUMBA
+========================= -->
 
 <div
     class="bg-hearts"
     id="bgHearts">
 </div>
 
+
+<!-- =========================
+     CONTAINER
+========================= -->
 
 <div class="container">
 
@@ -641,8 +776,13 @@ p {
         class="page"
         id="startPage">
 
-        <div style="font-size:75px;">
+        <div
+            style="
+                font-size:75px;
+            ">
+
             💌
+
         </div>
 
         <h1>
@@ -678,16 +818,21 @@ p {
         </h2>
 
         <p class="game-info">
+
             Tangkap dulu
             <b>8 kupu-kupu!</b> 🦋
+
         </p>
 
         <div class="score">
 
             🦋 Tertangkap:
+
             <span id="score">
                 0
-            </span>/8
+            </span>
+
+            /8
 
         </div>
 
@@ -717,7 +862,9 @@ p {
         id="successPage">
 
         <div class="success-heart">
+
             🦋
+
         </div>
 
         <h2>
@@ -767,17 +914,22 @@ p {
             id="envelope"
             onclick="openEnvelope()">
 
+
             <div class="env-back">
             </div>
+
 
             <div class="env-letter">
             </div>
 
+
             <div class="env-flap">
             </div>
 
+
             <div class="env-front">
             </div>
+
 
         </div>
 
@@ -801,9 +953,16 @@ p {
 
         <div class="message-card">
 
-            <div style="font-size:55px;">
+
+            <div
+                style="
+                    font-size:55px;
+                ">
+
                 💌
+
             </div>
+
 
             <h2>
                 Untuk Zidan
@@ -820,7 +979,7 @@ Mungkin terkesan sepele tapi aku ada di titik ini itu salah satunya karena kamu,
 
 Dulu itu aku ga nyangka bisa temenan lama banget sama kamu, ga nyangka juga bisa akrab sampai hari ini dan emang banyak hal yang ga aku sangka. Momen momen perkuliahan aku mungkin emang banyak sama kamunya dari awal semester kecuali waktu aku magang itu di jeda dulu 1 semester kan.
 
-Aku juga ga lupa buat minta maaf sama kamu. Kalo aku misal pernah bikin kamu sakit hati, ntah itu dari ucapan aku atau dari perbuatan aku. Aku mintaa maaf apapun itu yaa. Soalnya aku takut candaan aku ada yang bikin kamu tersinggung. 
+Aku juga ga lupa buat minta maaf sama kamu. Kalo aku misal pernah bikin kamu sakit hati, ntah itu dari ucapan aku atau dari perbuatan aku. Aku mintaa maaf apapun itu yaa. Soalnya aku takut candaan aku ada yang bikin kamu tersinggung.
 
 Kalo di bahas momen momen yang paling berkesan mungkin banyak ya dari ngobrolin orang orang dari A - Z atau sekedar ketawa bareng yang mungkin suatu hari saat cuman bisa di kenang aja. Kita juga bareng bukan pas pembelajaran kuliah aja tapi waktu ujian pun kita suka bareng bahkan jajan jugaa ngeborong kaya waktu itu.
 
@@ -836,11 +995,13 @@ See u zidann babayyyy🤪
 
             </div>
 
+
             <div class="signature">
 
                 Dari Reni Intan Nuraini
 
             </div>
+
 
         </div>
 
@@ -861,28 +1022,43 @@ const rain =
     );
 
 
-for(let i = 0; i < 55; i++){
+for (
+    let i = 0;
+    i < 55;
+    i++
+) {
 
     const drop =
         document.createElement(
             "div"
         );
 
+
     drop.className =
         "drop";
 
+
     drop.style.left =
-        Math.random() * 100 + "%";
+        Math.random() * 100
+        + "%";
+
 
     drop.style.animationDuration =
-        (2 + Math.random() * 3)
-        + "s";
+        (
+            2 +
+            Math.random() * 3
+        ) + "s";
+
 
     drop.style.animationDelay =
         Math.random() * 5
         + "s";
 
-    rain.appendChild(drop);
+
+    rain.appendChild(
+        drop
+    );
+
 }
 
 
@@ -896,34 +1072,48 @@ const bgHearts =
     );
 
 
-function createBackgroundHeart(){
+function createBackgroundHeart() {
 
     const seaObject =
         document.createElement(
             "div"
         );
 
+
     seaObject.className =
         "bg-heart";
 
 
-    if(Math.random() < 0.75){
+    /*
+       75% gelembung
+       25% lumba-lumba
+    */
+
+    if (
+        Math.random() < 0.75
+    ) {
 
         seaObject.innerText =
             "🫧";
 
+
         seaObject.style.fontSize =
-            (14 + Math.random() * 22)
-            + "px";
+            (
+                14 +
+                Math.random() * 22
+            ) + "px";
 
     } else {
 
         seaObject.innerText =
             "🐬";
 
+
         seaObject.style.fontSize =
-            (25 + Math.random() * 15)
-            + "px";
+            (
+                25 +
+                Math.random() * 15
+            ) + "px";
 
     }
 
@@ -934,8 +1124,10 @@ function createBackgroundHeart(){
 
 
     seaObject.style.animationDuration =
-        (8 + Math.random() * 7)
-        + "s";
+        (
+            8 +
+            Math.random() * 7
+        ) + "s";
 
 
     seaObject.style.animationDelay =
@@ -948,13 +1140,22 @@ function createBackgroundHeart(){
     );
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        seaObject.remove();
+            seaObject.remove();
 
-    }, 16000);
+        },
+        16000
+    );
+
 }
 
+
+/*
+   Munculkan objek
+   secara terus menerus
+*/
 
 setInterval(
     createBackgroundHeart,
@@ -966,17 +1167,22 @@ setInterval(
    HALAMAN
 ========================= */
 
-function hidePages(){
+function hidePages() {
 
     document
-        .querySelectorAll(".page")
-        .forEach(page => {
+        .querySelectorAll(
+            ".page"
+        )
+        .forEach(
+            page => {
 
-            page.classList.add(
-                "hidden"
-            );
+                page.classList.add(
+                    "hidden"
+                );
 
-        });
+            }
+        );
+
 }
 
 
@@ -988,6 +1194,7 @@ const butterflyArea =
     document.getElementById(
         "butterflyArea"
     );
+
 
 const scoreElement =
     document.getElementById(
@@ -1006,9 +1213,10 @@ let spawnTimer = null;
    MULAI GAME
 ========================= */
 
-function startGame(){
+function startGame() {
 
     hidePages();
+
 
     document
         .getElementById(
@@ -1019,22 +1227,50 @@ function startGame(){
         );
 
 
+    /*
+       Reset skor
+    */
+
     score = 0;
+
 
     scoreElement.innerText =
         score;
 
 
+    /*
+       Aktifkan game
+    */
+
     gameRunning = true;
 
+
+    /*
+       Bersihkan area
+    */
 
     butterflyArea.innerHTML =
         "";
 
 
     /*
-       Munculkan kupu-kupu
-       pertama
+       Hentikan timer lama
+       jika ada
+    */
+
+    if (
+        spawnTimer
+    ) {
+
+        clearInterval(
+            spawnTimer
+        );
+
+    }
+
+
+    /*
+       Kupu-kupu pertama
     */
 
     spawnButterfly();
@@ -1042,17 +1278,17 @@ function startGame(){
 
     /*
        Kupu-kupu berikutnya
-       muncul pelan-pelan
+       muncul perlahan
     */
 
     spawnTimer =
         setInterval(
             () => {
 
-                if(
+                if (
                     gameRunning &&
                     score < 8
-                ){
+                ) {
 
                     spawnButterfly();
 
@@ -1069,27 +1305,35 @@ function startGame(){
    BUAT KUPU-KUPU
 ========================= */
 
-function spawnButterfly(){
+function spawnButterfly() {
 
-    if(!gameRunning){
+    if (
+        !gameRunning
+    ) {
+
         return;
+
     }
 
 
     /*
-       Jangan terlalu banyak
-       kupu-kupu di layar
+       Maksimal 3 kupu-kupu
+       bersamaan
     */
 
     const existing =
         butterflyArea
-        .querySelectorAll(
-            ".butterfly"
-        );
+            .querySelectorAll(
+                ".butterfly"
+            );
 
 
-    if(existing.length >= 3){
+    if (
+        existing.length >= 3
+    ) {
+
         return;
+
     }
 
 
@@ -1108,12 +1352,14 @@ function spawnButterfly(){
 
 
     /*
-       Posisi acak
+       Hitung posisi
+       secara acak
     */
 
     const maxX =
         butterflyArea.clientWidth
         - 60;
+
 
     const maxY =
         butterflyArea.clientHeight
@@ -1122,8 +1368,8 @@ function spawnButterfly(){
 
     const x =
         10 +
-        Math.random()
-        * Math.max(
+        Math.random() *
+        Math.max(
             0,
             maxX - 10
         );
@@ -1132,194 +1378,3 @@ function spawnButterfly(){
     const y =
         10 +
         Math.random()
-        * Math.max(
-            0,
-            maxY - 10
-        );
-
-
-    butterfly.style.left =
-        x + "px";
-
-
-    butterfly.style.top =
-        y + "px";
-
-
-    /*
-       Kecepatan animasi
-       sedikit berbeda
-    */
-
-    butterfly.style.animationDuration =
-        (2.5 + Math.random() * 1.5)
-        + "s";
-
-
-    /*
-       Saat disentuh
-    */
-
-    butterfly.addEventListener(
-        "click",
-        catchButterfly
-    );
-
-
-    butterfly.addEventListener(
-        "touchstart",
-        function(e){
-
-            e.preventDefault();
-
-            catchButterfly.call(
-                butterfly,
-                e
-            );
-
-        },
-        {
-            passive: false
-        }
-    );
-
-
-    butterflyArea.appendChild(
-        butterfly
-    );
-
-}
-
-
-/* =========================
-   TANGKAP KUPU-KUPU
-========================= */
-
-function catchButterfly(e){
-
-    if(!gameRunning){
-        return;
-    }
-
-
-    const butterfly =
-        this;
-
-
-    if(
-        butterfly.classList.contains(
-            "caught"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    butterfly.classList.add(
-        "caught"
-    );
-
-
-    score++;
-
-
-    scoreElement.innerText =
-        score;
-
-
-    setTimeout(() => {
-
-        butterfly.remove();
-
-    }, 400);
-
-
-    /*
-       Kalau sudah 8
-    */
-
-    if(score >= 8){
-
-        finishGame();
-
-    }
-
-}
-
-
-/* =========================
-   SELESAI GAME
-========================= */
-
-function finishGame(){
-
-    gameRunning = false;
-
-
-    clearInterval(
-        spawnTimer
-    );
-
-
-    spawnTimer = null;
-
-
-    /*
-       Hapus kupu-kupu
-    */
-
-    setTimeout(() => {
-
-        butterflyArea
-            .querySelectorAll(
-                ".butterfly"
-            )
-            .forEach(
-                butterfly => {
-
-                    butterfly.remove();
-
-                }
-            );
-
-
-        hidePages();
-
-
-        document
-            .getElementById(
-                "successPage"
-            )
-            .classList.remove(
-                "hidden"
-            );
-
-    }, 700);
-
-}
-
-
-/* =========================
-   TAMPIL AMPLOP
-========================= */
-
-function showEnvelope(){
-
-    hidePages();
-
-    document
-        .getElementById(
-            "envelopePage"
-        )
-        .classList.remove(
-            "hidden"
-        );
-
-}
-
-
-/* =========================
-   BUKA AMPLOP
-======================
